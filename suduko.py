@@ -199,6 +199,5 @@ class Boxes:
         self.print_matrix()
 
 boxes = Boxes()
-boxes
 
 # %%
