@@ -4,7 +4,25 @@ import numpy as np
 import random
 from copy import deepcopy
 
-class Boxes:
+class Cell:
+    def __init__(self, row: int, col: int, value: int, box: int, guesses: list[int], hidden: bool = False, helper:bool = False) -> None:
+        self.row = row
+        self.col = col
+        self.value = value
+        self.box = box
+        self.hidden = hidden
+        self.guesses = guesses # List
+        self.helper = helper
+
+
+#%%
+box = np.zeros(3,3)
+for row in range(3):
+    for col in range(3):
+        box[row,col] = Cell(row=row, col=col, value=0)
+
+#%%
+class SudokuPuzzle:
     def __init__(self) -> None:
         self.boxes = {i:np.zeros((3,3), dtype=int) for i in range(1,10)}
         self.matrix = None
@@ -128,15 +146,7 @@ class Boxes:
 # col_values = {idx:list(range(1,10)) for idx in range(9)}
 # box_values = {idx:list(range(1,10)) for idx in range(9)}
 
-# class Cell:
-#     def __init__(self):
-#         self.row = None
-#         self.col = None
-#         self.value = None
-#         self.box = None
-#         self.hidden = False
-#         self.guesses = None # List
-#         self.helper = False
+
 
 #     def print(self):
 #         print(f'Box: {self.box}\nCell: ({self.row, self.col})\nValue: {self.value}')
