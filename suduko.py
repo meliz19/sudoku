@@ -2,87 +2,6 @@
 import numpy as np 
 import random
 from copy import deepcopy
-from time import sleep
-
-# # Available values in each row/col
-# row_values = {idx:list(range(1,10)) for idx in range(9)}
-# col_values = {idx:list(range(1,10)) for idx in range(9)}
-# box_values = {idx:list(range(1,10)) for idx in range(9)}
-
-# class Cell:
-#     def __init__(self):
-#         self.row = None
-#         self.col = None
-#         self.value = None
-#         self.box = None
-#         self.hidden = False
-#         self.guesses = None # List
-#         self.helper = False
-
-#     def print(self):
-#         print(f'Box: {self.box}\nCell: ({self.row, self.col})\nValue: {self.value}')
-
-# class Suduko:
-#     def __init__(self):
-
-#         # Indices Per Box
-#         matrix_idx = np.arange(9).reshape(3,3)
-
-#         unique_combinations = []
-#         for i in range(3):
-#             for j in range(3):
-#                 unique_combinations.append((matrix_idx[i], matrix_idx[j]))
-
-#         boxes={box:indices for box,indices in enumerate(unique_combinations)}
-#         box_indices = {}
-#         for box_no, (row_indices, col_indices) in boxes.items():
-#             box_indices[box_no] = [(row, col) for row in row_indices for col in col_indices]
-#             # print(f'box_no: {box_no}\trow: {row_indices}\tcol: {col_indices}')
-#         # print(box_indices)
-
-#         cells = {}
-#         for box_no, indices in box_indices.items():
-#             for row,col in indices:
-#                 cells[(row, col)] = Cell()
-#                 cells[(row, col)].row = row
-#                 cells[(row, col)].col = col
-#                 cells[(row, col)].box = box_no
-
-#                 available_values = (
-#                     set(box_values[box_no])
-#                         .intersection(set(row_values[row]))
-#                         .intersection(set(col_values[col]))
-#                 )
-#                 cells[(row, col)].value = random.choice(available_values)
-
-# #%%
-# matrix = np.array(['-']*81).reshape(9,9)
-# row_indices={value:list(range(9)) for value in range(1,10)}
-# col_indices={value:list(range(9)) for value in range(1,10)}
-
-# #%%
-# for _ in range(9):
-#     for value in range(1,9):
-#         # get indicies for value
-#         row_idx = random.choice(row_indices[value])
-#         col_idx = random.choice(col_indices[value])
-
-#         # remove selected indices from available indices 
-#         # for value
-#         row_indices[value].remove(row_idx)
-#         col_indices[value].remove(col_idx)
-        
-#         # update matrix
-#         matrix[row_idx][col_idx] = value
-
-# def print_matrix(matrix):
-#     for idx, row in enumerate(matrix):
-#         print(f'{" ".join(str(x) for x in row[0:3])} | {" ".join(str(x) for x in row[3:6])} | {" ".join(str(x) for x in row[6:])}')
-
-#         if idx%3==0:
-#             print('-'*23)
-
-# print_matrix(matrix)
 
 class Boxes:
     def __init__(self) -> None:
@@ -198,6 +117,55 @@ class Boxes:
         # final product
         self.print_matrix()
 
-boxes = Boxes()
-
 # %%
+# # Available values in each row/col
+# row_values = {idx:list(range(1,10)) for idx in range(9)}
+# col_values = {idx:list(range(1,10)) for idx in range(9)}
+# box_values = {idx:list(range(1,10)) for idx in range(9)}
+
+# class Cell:
+#     def __init__(self):
+#         self.row = None
+#         self.col = None
+#         self.value = None
+#         self.box = None
+#         self.hidden = False
+#         self.guesses = None # List
+#         self.helper = False
+
+#     def print(self):
+#         print(f'Box: {self.box}\nCell: ({self.row, self.col})\nValue: {self.value}')
+
+# class Suduko:
+#     def __init__(self):
+
+#         # Indices Per Box
+#         matrix_idx = np.arange(9).reshape(3,3)
+
+#         unique_combinations = []
+#         for i in range(3):
+#             for j in range(3):
+#                 unique_combinations.append((matrix_idx[i], matrix_idx[j]))
+
+#         boxes={box:indices for box,indices in enumerate(unique_combinations)}
+#         box_indices = {}
+#         for box_no, (row_indices, col_indices) in boxes.items():
+#             box_indices[box_no] = [(row, col) for row in row_indices for col in col_indices]
+#             # print(f'box_no: {box_no}\trow: {row_indices}\tcol: {col_indices}')
+#         # print(box_indices)
+
+#         cells = {}
+#         for box_no, indices in box_indices.items():
+#             for row,col in indices:
+#                 cells[(row, col)] = Cell()
+#                 cells[(row, col)].row = row
+#                 cells[(row, col)].col = col
+#                 cells[(row, col)].box = box_no
+
+#                 available_values = (
+#                     set(box_values[box_no])
+#                         .intersection(set(row_values[row]))
+#                         .intersection(set(col_values[col]))
+#                 )
+#                 cells[(row, col)].value = random.choice(available_values)
+
