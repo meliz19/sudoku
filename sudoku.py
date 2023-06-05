@@ -4,24 +4,46 @@ import numpy as np
 import random
 from copy import deepcopy
 
+class ArrayToCell:
+    def __init__(self):
+        # self.matrix = [Cell(row=row, col=col, box_no=self.get_box_no(row,col)) for row in range(9) for col in range(9)]
+        self.puzzle = SudokuPuzzle()
+        self.sudoku_board = [Cell(row=row_idx, col=col_idx, box_no=self.get_box_no(row_idx,col_idx), value=value) for row_idx, row in enumerate(self.puzzle.matrix) for col_idx, value in enumerate(row)]
+
+    def check_col(self, col:int) -> int:
+        if col<3:
+            return 1
+        elif col<6:
+            return 2
+        else:
+            return 3
+    def get_box_no(self, row:int, col:int) -> int:
+        if row<3:
+            return self.check_col(col)
+        elif row<6:
+            return 3 + self.check_col(col)
+        else:
+            return 6 + self.check_col(col)
+
 class Cell:
-    def __init__(self, row: int, col: int, value: int, box: int, guesses: list[int], hidden: bool = False, helper:bool = False) -> None:
+    def __init__(self, row: int, col: int, box_no: int, value: int = 0, guesses: list[int] = None, hidden: bool = False, helper:bool = False) -> None:
         self.row = row
         self.col = col
         self.value = value
-        self.box = box
+        self.box_no = box_no
         self.hidden = hidden
-        self.guesses = guesses # List
+        self.guesses = guesses
         self.helper = helper
 
-
-#%%
-box = np.zeros(3,3)
-for row in range(3):
-    for col in range(3):
-        box[row,col] = Cell(row=row, col=col, value=0)
-
-#%%
+    def get_coordinates(self):
+        return (self.row,self.col)
+    
+    def get_value(self):
+        return self.value
+    
+    def get_box_no(self):
+        return self.box_no
+    
 class SudokuPuzzle:
     def __init__(self) -> None:
         self.boxes = {i:np.zeros((3,3), dtype=int) for i in range(1,10)}

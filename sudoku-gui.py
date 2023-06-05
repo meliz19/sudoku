@@ -1,5 +1,5 @@
 import ttkbootstrap as ttk
-from sudoku import Boxes
+from sudoku import SudokuPuzzle
 
 class SudokuBoard(ttk.Frame):
     def __init__(self, master, **kwargs):
@@ -11,7 +11,7 @@ class SudokuBoard(ttk.Frame):
     def create_board(self, master, bootstyle='dark', padx=0, pady=0):
         '''create_board = vstack the boxes
         '''
-        puzzle = Boxes()
+        puzzle = SudokuPuzzle()
 
         row1 = ttk.Frame(master=master, bootstyle=bootstyle)
         row1.pack(fill='both', expand=True, padx=padx, pady=pady)
