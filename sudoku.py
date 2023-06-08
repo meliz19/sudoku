@@ -92,7 +92,7 @@ class SudokuSolution:
         self.boxes[4], self.boxes[5], self.boxes[6] = np.hsplit(row2, 3)
         self.boxes[7], self.boxes[8], self.boxes[9] = np.hsplit(row3, 3)
 
-    def print_matrix(self, matrix=None|np.array) -> None:
+    def print_matrix(self, matrix: np.array = None) -> None:
         '''
         Prints the provided 9x9 numpy array to the command line in the form of a standard Sudoku board. If the matrix parameter is not given, the function will print the matrix attribute.
 
@@ -156,7 +156,7 @@ class SudokuSolution:
             The current box that has a number being assigned to it.
 
         num : int
-            The current number being assigned coordinates within a box/the matrix
+            The current number being assigned coordinates within a box/the matrix.
 
         Return
         ------
@@ -198,10 +198,15 @@ class SudokuSolution:
         self.matrix[self.matrix==10] = 0
         self.unstack()
 
-    def pull_back(self, num) -> None:
+    def pull_back(self, num: int) -> None:
         '''
         Resets the boxes and matrix attributes to the previous number iteration and starts the assignments again for the current number.
         
+        Parameter
+        ---------
+        num : int
+            The current number being assigned coordinates within a box/the matrix.
+
         Return
         ------
         None
@@ -398,7 +403,6 @@ class SudokuPuzzle(SudokuSolution):
         self.unstack()
         self.puzzle_boxes = deepcopy(self.boxes)
 
-    # Solve the puzzle
     def solve_puzzle(self):
         '''
         Applies a simple algorithm to solve the created puzzle.
