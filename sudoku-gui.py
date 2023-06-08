@@ -179,14 +179,11 @@ class App(ttk.Frame):
     
     check_solution():
         Checks the user's inputs against the puzzle's solution.
-
-
     '''
     def __init__(self, master, **kwargs):
         super().__init__(master, **kwargs)
         self.pack(fill='both', expand=True)
 
-        # self.hint_var = ttk.IntVar()
         self.sudoku_puzzle = SudokuPuzzle()
         self.sudoku_board = None
 
@@ -206,9 +203,6 @@ class App(ttk.Frame):
         
     def settings_controls(self, container: ttk.Frame, padx: int =5, pady: int =5) -> None:
         '''Inserts the menu board buttons into the container of the main window.'''
-        # hint_toolbtn = ttk.Checkbutton(master=container, text='Hint', variable=self.hint_var, bootstyle='default-round-toggle', command=self.on_hint)
-        # hint_toolbtn.pack(padx=padx, pady=pady)
-
         reset_board_btn = ttk.Button(master=container, text='Reset Board', bootstyle='danger', command=self.reset_board)
         reset_board_btn.pack(padx=padx, pady=pady)
 
@@ -217,16 +211,6 @@ class App(ttk.Frame):
 
         check_soln_btn = ttk.Button(master=container, text='Check Solution', bootstyle='success', command=self.check_solution)
         check_soln_btn.pack(padx=padx, pady=pady)
-
-    # def on_hint(self):
-    #     if self.hint_var.get()==1:
-    #         print('hint==ON')
-    #     else:
-    #         print('hint==OFF')
-        #     if ent != cell_solution:
-        #         ent.config(bordercolor='red')
-        #     elif ent == '':
-        #         ent.config(bordercolor='default')
     
     def reset_board(self) -> None:
         '''Clears the board of all user input.'''
@@ -257,7 +241,7 @@ class App(ttk.Frame):
             else:
                 self.generate_new_puzzle()
         else:
-            message = 'Uh-Oh. It looks like you need to try again.' # If you need a hint, turn the Hint button on.'
+            message = 'Uh-Oh. It looks like you need to try again.'
             Messagebox.ok(message=message, title='Try Again.')
 
 if __name__=='__main__':
